@@ -1,0 +1,1065 @@
+/*Использованы фото автора Scott Webb: Pexels 
+Kaboompics .com: Pexels -желтое
+Ylanite Koppens: Pexels
+Tirachard Kumtanom: Pexels
+ Axel Vandenhirtz: Pexels
+  Magda Ehlers: Pexels
+  Фото автора Daria Shevtsova: Pexels
+  https://www.pexels.com/ru-ru/
+*/
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif !important;
+ 
+  font-size: 15px;
+  line-height: 1.6;
+  color: #333;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing :border-box; 
+/** - все элементы
+*:before все псевдоэлементы "before" на странице
+*:after все псевдоэлементы "after" на странице
+
+и все перечислено через запятую для того чтобы показать, что ко всем применяется одно и тоже css правило.*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+hr {
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 40px 0;
+    
+    border: 0;
+    background-color: #e5e5e5;
+}
+ Page 
+.page {
+    overflow: hidden;
+}
+
+/*Container*/
+.container {
+    width: 100%;
+    max-width: 1230px; /* Если значение ширины (width) больше значения max-width, то ширина элемента принимается равной значению max-width.*/
+    padding:0 15px;
+    margin: 0 auto;
+}
+
+/*Intro*/
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100vh; /*100% экрана посетителя*/
+    min-height: 820px;
+    position: relative;
+    background: url("assets/images/intro-new.jpg") center no-repeat; 
+      -webkit-background-size: cover; /* позволяет указывать размеры фонового изображения, которые могут быть заданы в абсолютных величинах (cm, mm, in и т.д.), относительных (px, em и т.д.), или в процентах, по отношению к ширине и высоте элемента контейнера. Масштабировать фоновое изображение возможно как с сохранением исходных пропорций, так и без них.cover - масштабирует картинку с сохранением пропорций по меньшей стороне, то есть так, чтобы фон с избытком покрывал блок-контейнер.*/
+      background-size: cover;/*Масштабирует изображение с сохранением пропорций так, чтобы его ширина или высота равнялась ширине или высоте блока.*/
+}
+
+.intro__inner {/* новый контейнер создан для уменьшения ширины*/
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    
+    text-align: center;
+}
+
+  
+
+.intro__title {
+  /*color: #fff;*/
+    font-size: 100px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height:  1
+}
+
+.intro__title:after { /* полоска, что бы не создавать отдельный div*/
+    content:"";/*Свойство content позволяет вставлять генерируемое содержание в текст веб-страницы, которое первоначально в тексте отсутствует. Применяется совместно с псевдоэлементами :after и :before, они соответственно указывают отображать новое содержимое после или до элемента, к которому добавляются.*/
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin: 60px auto; /*сверху слева-справа снизу*/
+    background-color: #fff;
+    
+}
+
+.intro__suptitle {
+    margin-bottom: 30px;
+    
+    font-family:'Montserrat', sans-serif;
+    font-style: italic;
+    font-size: 30px;
+    /*text-align: center; - убрала, потому что добавила к родителю*/
+    color: #fff;
+
+}
+/*.intro .container .intro_inner a.btn{} - кнопка привязана к структуре и невозможно ее еще где-то применить-плохо - выдяляю отдельный эелемент с классом button и описываю ниже!*/
+
+
+/*header*/
+.header {
+    width: 100%;
+    /*padding-top: 30px;*/
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* наложение.только если position задано как absolute, fixed или relative.*/
+}
+.header.fixed {
+   
+    background-color: #9cc1ee;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    transform: translate3d(0, 0, 0);
+  
+}
+
+
+.header.active {
+    background-color: #9cc1ee;
+}
+.header__inner {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.header__logo {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    padding: 30px;
+}
+
+
+/*Nav*/
+
+.nav {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.nav__link {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 15px;
+  position: relative;
+  
+  color: #fff;
+  text-decoration: none;
+  
+  transition: color .1s linear;
+}
+.nav__link:after { /*полоска при наведении позиционирую относительно родителя*/
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  /*display: none;/*что бы не было видно, пока не наведу*/
+  opacity: 0; /* для плавности вместо display*/
+  background-color: #fce38a;;
+  
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  
+  transition: opacity .1s linear;/*для плавности при наведении*/
+}
+
+.nav__link:hover { /* hover:Определяет стиль элемента при наведении на него курсора мыши, но при этом элемент еще не активирован, иными словами кнопка мыши не нажата.*/
+  color: #fce38a;/*желтый цвет при наведении*/
+}
+
+.nav__link:hover:after, .nav__link.active:after /*.nav_link.active:after подчеркивание для ative(about) без наведения*/
+{ /*псевдоэлемент after*/
+  /*display:block;*/
+  opacity: 1; /* для плавности вместо display*/
+}
+.nav__link.active {
+    color: #fce38a;
+}
+
+/* Nav toggle */
+.nav-toggle {
+    width: 30px;
+    padding: 0px 0;
+    display: none;
+    
+    font-size: 0;
+    color: transparent;
+    
+    border: 0;
+    background: none;
+    cursor: pointer;
+    
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 1;
+  
+}
+.nav-toggle:focus {/*Псевдокласс :focus определяет стиль для элемента получающего фокус. Например, им может быть текстовое поле формы, в которое устанавливается курсор.*/
+outline:0;
+} /*убрала внешние границы*/
+.nav-toggle__item {
+   display: block;
+    width: 100%;
+    height: 3px;
+
+    background-color: #fff;
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 35px auto;
+    transition: background .2s linear;
+}
+/*делаю крестикю убираю active - превращается в бургер, добавляю -в крестик*/
+.nav-toggle.active .nav-toggle__item {
+    background: none; /*если у бургера класс active красшу item. пропадает центральные полоски*/
+}
+
+.nav-toggle__item:before,
+.nav-toggle__item:after {
+    content: "";
+    width: 100%;
+    height: 3px;
+
+    background-color: #fff;
+
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    
+    transition: transform .2s linear;
+    
+}
+
+.nav-toggle__item:before {
+    top: -8px;
+}
+
+.nav-toggle__item:after {
+    bottom: -8px;
+}
+.nav-toggle.active .nav-toggle__item:before {
+    transform-origin: left top;
+    transform: rotate(45deg) translate3d(0px, -3px, 0)
+}
+.nav-toggle.active .nav-toggle__item:after {
+    transform-origin: left bottom;
+    transform: rotate(-45deg) translate3d(0px, 3px, 0);
+}
+
+/*Button*/
+.btn {
+  display: inline-block;
+  vertical-align: top;
+  padding: 8px 30px;
+  margin-top: 10px;/*расстояние между кнопками*/
+  
+  border: 3px solid #fff;/*solid-сплошная линия вокруг рамки*/
+  border-radius: 5px; 
+  
+  /*стили для текста внутри кнопки: #fff-белый*/
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;/*убирает подчеркивание ссылки*/
+  transition: background .1s linear, color .1s linear;
+  
+}
+
+.btn:hover { /* движение на кнопку, меняет цвет*/
+ 
+  background-color: #fff;
+  color: #000;
+  
+}
+
+
+/*Section*/
+.section {
+  padding: 80px;
+}
+.section--services {
+  padding-bottom:  10px;
+}
+
+.section--wedo {
+  padding-top: 10px;
+}
+.section--gray {
+    background-color: #f8f8f8;
+}
+
+.section__header {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto 50px;
+ 
+  text-align: center;
+  
+}
+
+.section__suptitle {
+  font-family: 'Montserrat', sans-serif;; /*заработало!*/
+  font-size: 20px;
+  color: #333;
+}
+
+.section__title {
+  font-size:30px;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase
+}
+
+.section__title:after { /*полоска при наведении позиционирую относительно родителя*/
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin: 30px auto ;
+  
+    background-color: #f38181;
+}
+
+.section__text {
+    font-size: 15px;
+    color:#999;
+}
+
+/*Card*/
+
+.card {
+    margin-top: 80px -15px;
+    display: flex;
+    flex-wrap: wrap; /*разрешаем переност для адаптивности*/
+    justify-content: space-between;
+}
+
+.card__item {
+   width: 33.33333%; /* ширина каждой картинки, не забыть!!! поменять для адаптивности !!!*/
+   padding: 0 15px;
+  
+}
+  .card__inner {
+    position:relative; /*каждому родительскому элементу*/
+    
+    background-color: #b3d6dc;
+    
+}
+.card__item:hover .card__img {
+    transform: translate3d(-10px, -10px, 0); /* сдвигаю картинку  по оси x y z*/
+}
+
+
+.card__item:hover .card__img img {
+    opacity: .1;/*меняется прозрачность при наведении от 0 до 1, при 0 фон  полностью перекрывает картинку*/
+}
+
+.card__item:hover .card__text {
+    opacity: 1;
+}
+
+.card__img { /*делаю градиент при наведении*/
+    background: linear-gradient(to top, #6c9fee, #cb019d);
+      /*to top - снизу вверх*/
+    transition: transform .2s linear; /*для плавности*/
+}
+
+.card__img img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    transition: opacity .1s linear;
+}
+
+.card__text {
+    width: 100%; /* для absolute*/
+    font-size: 18px;
+    color:#fff;
+    text-transform: uppercase;
+    font-weight: 700; /*насыщенность шрифта*/
+    text-align: center;
+    opacity: 0;/*скрываю текст*/
+    
+    position: absolute; /* что бы нижний слой появлялся*/
+    top:50%;
+    left:0;
+    z-index: 2;
+    transform: translate3d(0, -50%, 0);
+    
+    transition: opacity .2s linear;
+    
+}
+
+/*Statistics*/
+.statistics {
+    background-color: #9cc1ee;
+}
+
+.stat {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.stat__item {
+    flex: 1 1 0; /*https://www.w3.org/TR/css-flexbox-1/#flex-common*/
+    padding: 70px 25px; /* сверху-снизу, слева-справа*/
+    
+    border-left: 1px solid #fff;
+    
+    text-align: center;
+    color: #fff;
+}
+
+
+.stat__item:last-child { /*последний элемент родителя*/
+    border-right: 1px solid #fff;
+}
+
+.stat__count {
+    margin-bottom: 10px; /*отступ снизу*/
+  
+    font-size: 72px; 
+    font-weight: 700;/*font-weight: bold|bolder|lighter|normal|100|200|300|400|500|600|700|800|900*/
+    line-height: 1;/*межстрочны интервал*/
+}
+.stat__text {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/*Services*/
+
+
+.services {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.services__item {
+    width: 33.33333%;
+    padding: 0 35px 40px 85px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.services__item--border {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.services__icon {
+    position: absolute;
+    top: 0;
+    left: 28px;
+    z-index: 1;
+}
+
+.services__title {
+    margin-bottom: 10px;
+
+    font-size: 14px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.services__text {
+    font-size: 15px;
+    color: #999;
+}
+
+/* We do */
+.wedo {
+    display: flex;
+    flex-wrap: wrap; /*что бы перескакивала картинка*/
+    margin: 0 -15px;
+   
+}
+
+.wedo__item {
+    width: 50%; /* 2 одинаковых блока по 50%каждый*/
+    padding: 0 15px; /* в сочетании с margin wedo создала отступ   что бы итемы не выходили из контейнера */
+}
+.wedo__img { /* настроила, что бы уменьшая браузер уменьшалась картинка*/
+  display: block;
+  max-width: 100%;
+  height: auto;
+  
+}
+
+
+/* Accordion */
+
+.accordion__item {
+    margin-bottom: 10px;
+    border: 1px solid #e5e5e5;
+}
+
+.accordion__item.active .accordion__content {
+    display: block;
+}
+
+.accordion__item.active .accordion__header {
+    border-bottom-color: #e5e5e5;
+}
+
+.accordion__item.active .accordion__header:after {
+    transform: translateY(-50%) rotate(-45deg);
+    margin-top: 5px;
+}
+
+.accordion__header {
+    padding: 15px 20px 15px 65px;
+    position: relative;
+
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+}
+
+.accordion__header:after { /* стрелочка*/
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+
+    border-top: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    z-index: 1;
+
+    transform: translateY(-50%) rotate(135deg);
+}
+
+.accordion__icon { /*выравниваю относительно header*/
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    z-index: 1;
+
+    transform: translateY(-50%);
+}
+
+.accordion__content {
+    padding: 15px 20px;
+    display: none;
+
+    font-size: 15px;
+    color: #999;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.accordion__title {
+    font-size: 14px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+
+/* Reviews */
+.reviews {
+    padding: 0 110px;
+    position: relative;
+}
+
+.reviews__item {
+    padding-left: 205px;
+    position: relative;
+}
+
+.reviews__photo {
+    border: 2px solid #95e1d3;
+  border-radius: 40%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.reviews__text {
+    margin-bottom: 15px;
+
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 300;
+    color: #999;
+}
+
+.reviews__author {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 24px;
+    color: #333;
+}
+
+.reviews__author:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 60px;
+    height: 3px;
+    margin-right: 10px;
+
+    background-color: #f38181;
+}
+
+.reviews__btn {
+    font-size: 0;
+    color: transparent;
+
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.reviews__btn:after {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+
+    border-top: 2px solid #ccc;
+    border-left: 2px solid #ccc;
+}
+
+.reviews__btn--prev {
+    left: 0;
+    transform: rotate(-45deg);
+}
+
+.reviews__btn--next {
+    right: 0;
+    transform: rotate(135deg);
+}
+.section--sale {
+    text-align: center;
+    color:   #cb019d;
+    
+}
+.btn--sale {
+    display: inline-block;
+  vertical-align: top;
+  padding: 8px 30px;
+  margin-top: 0px;/*расстояние между кнопками*/
+  
+  border: 3px solid #9cc1ee;/*solid-сплошная линия вокруг рамки*/
+  border-radius: 5px; 
+  
+  /*стили для текста внутри кнопки: #fff-белый*/
+  font-size: 14px;
+  font-weight: 700;
+  color: #9cc1ee;
+  text-transform: uppercase;
+  text-decoration: none;/*убирает подчеркивание ссылки*/
+  transition: background .1s linear, color .1s linear;
+  
+}
+
+.btn--sale:hover { /* движение на кнопку, меняет цвет*/
+ 
+  background-color: #9cc1ee;
+  color: #000;
+  
+}
+
+
+
+  
+
+
+
+/*Footer*/
+
+.footer {
+ /* padding: 70px 0; cсверху снизу /слева справа*/
+  
+    background-color: #9cc1ee;
+     
+}
+
+.footer__inner {
+    display: flex;
+    flex-wrap: wrap; /*Свойство CSS flex-wrap задает правила вывода flex-элементов —  в одну строку или в несколько, с переносом блоков.Расположение в несколько линий.*/
+    padding: 70px 0;
+   /* margin-top: 50px;*/
+}
+
+.footer__block {
+    width: 33.33333%;
+    padding: 0 18px;
+  
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.footer__title {
+    margin-bottom: 20px;
+  
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+}
+.footer__address {
+    font-size: 14px;
+/*  line-height: 1.5; устанавливает величину пространства между строками, например в тексте*/
+    line-height: 1.5;
+    font-style: normal;
+    color: rgba(0, 0, 0, .5);
+}
+.footer__text {
+    font-size: 14px;
+    line-height: 1.5; /*устанавливает величину пространства между строками, например в тексте не работает!!!!!!*/
+    color: rgba(0, 0, 0, .5);
+}
+
+/*copyright*/
+  .copyright {
+    padding: 20px 0;
+    
+   /* background-color: ;#cb019d,*/
+     background: linear-gradient(to top,#697e91, #9cc1ee  );
+    
+}
+.copyright__text {
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+}
+.copyright__text span {
+    color: #ecb1de;
+}
+/*регистрация авторизация и обратная связь*/
+.header-reg {
+  position: relative;
+  font-size: 30px;
+  padding-top: 20px;
+}
+.form-reg {
+  display: block;
+  font-size: 15px;
+}
+.text-left { /*не создал класс для p в форме*/
+  margin:  0 0 0px;
+}
+
+/*адаптивная верстка*/
+@media (max-width: 1230px) {
+
+    /* Intro */
+    .intro__suptitle {
+        font-size: 52px;
+    }
+
+    .intro__title {
+        font-size: 100px;
+    }
+    
+   
+
+} /*(max-width: 1230px) */
+
+@media (max-width: 990px) {
+/*header*/
+    .header {
+      padding: 10px 0;
+    }
+    
+    .header__logo {
+        font-size: 25px;
+}
+
+
+  /* Nav */
+    .nav {
+        display: none;
+        width: 100%; /*меню на всю ширину экрана*/
+        
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        background-color: #9cc1ee;
+    }
+    
+    .nav.active {
+      display: block;
+    }
+    
+    .nav__link {
+        display: block; /* что бы каждый item был а новой строке в столбик*/
+        margin: 0;
+        padding: 8px 20px;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+    /* Intro */
+    .intro__suptitle {
+        font-size: 32px;
+    }
+
+    .intro__title {
+        font-size: 80px;
+    }
+
+    /* Stat */
+    .stat {
+       justify-content: center;
+    }
+
+    .stat__item {
+        flex: none;
+        width: 33.33333%;
+        padding-top: 30px;
+        padding-bottom: 30px;
+
+        border: 0;
+    }
+
+    .stat__item:last-child {
+        border-right: 0;
+    }
+
+    /* Services */
+    .services__item {
+        width: 50%;
+        padding-bottom: 0;
+    }
+
+    .services__item--border {
+        border-bottom: 0;
+    }
+.header-reg {
+  position: relative;
+  font-size: 20px;
+  padding-top: 20px;
+}
+.form-reg {
+  display: block;
+  font-size: 13px;
+}
+.text-left {
+  margin:  0 0 0px;
+}
+} /*(max-width: 990px)*/
+
+@media (max-width: 770px) {
+    /*header*/
+    .header__logo {
+        font-size: 20px;
+}
+/* Intro */
+.intro {
+  min-height: 650px}
+  
+    .intro__suptitle {
+        font-size: 22px;
+    }
+
+    .intro__title {
+        font-size:80px;
+    }
+    
+  
+    /*/* Nav 
+    .nav {
+        display: none;
+    }*/
+
+
+    /* Section */
+    .section {
+        padding: 10px 0;
+    }
+
+    /*.section--devices {
+        padding-bottom: 0;
+    }*/
+
+
+    /* Card */
+    .card {
+        margin-top: 50px;
+        justify-content: center;
+    }
+
+    .card__item {
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 30px;
+    }
+
+    .card__item:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Services */
+    .services {
+        justify-content: center;
+    }
+
+    .services__item {
+        width: 100%;
+        max-width: 400px;
+        padding-left: 55px;
+        padding-right: 0;
+    }
+
+    .services__icon {
+        left: 0;
+    }
+    
+    /*WEdo*/
+   
+    .wedo__img {
+      width: 100%;
+     /*justify-content: center;*/
+      /* display: none; */
+    }
+    
+    .wedo__item {
+      width: 100%;
+    }
+ /*footer*/
+
+  .footer__block {
+   
+      width: 100%;
+     /*   border-bottom: 1px solid #b5eae0;*/
+  }
+
+  .footer__title {
+      font-size: 14px;
+    
+}
+
+  .copyright__text {
+    font-size: 8px;
+    }
+} /*(max-width: 770px)*/
+
+
+@media (max-width: 575px) {
+
+    /* Intro */
+    .intro__suptitle {
+        font-size: 22px;
+    }
+
+    .intro__title {
+        font-size: 40px;
+    }
+
+/*header*/
+    .header__logo {
+        font-size: 20px;
+}
+    /* Section */
+    .section__header {
+        margin-bottom: 50px;
+    }
+
+    .section__suptitle {
+        font-size: 20px;
+    }
+
+    .section__title {
+        font-size: 24px;
+    }
+
+    .section__title:after {
+        margin: 20px auto;
+    }
+
+    /* Stat */
+    .stat__item {
+        width: 100%;
+
+        border-bottom: 1px solid #b5eae0;
+    }
+
+    .stat__item:last-child {
+        border-bottom: 0;
+    }
+
+    .stat__count {
+        font-size: 52px;
+    }
+/*footer*/
+
+    .footer__block {
+   
+        width: 100%;
+     /*   border-bottom: 1px solid #b5eae0;*/
+    }
+
+    .footer__title {
+        font-size: 14px;
+    
+}
+
+    .copyright__text {
+      font-size: 8px;
+    }
+    
+    .navi {
+      font-size: 12px;
+    }
+    ::-webkit-input-placeholder {
+      font-size: 10px;
+      margin: 0px;
+    }
+    
+    .header-reg {
+      font-size: 15px;
+    }
+    .form-reg {
+      font-size: 8px;
+    }
+    .logo-reg {
+      font-size: 15px;
+    }
+    .btn-primary {
+      font-size: 10px;
+    }
+    .cont--reg {
+      font-size: 12px;
+    }
+    /*.input-group {
+      padding: 0;
+      margin: 0 ;
+    }*/
+}/*(max-width: 575px)*/
+
